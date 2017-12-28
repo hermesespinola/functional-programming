@@ -41,22 +41,40 @@ object ParallelParenthesesBalancing {
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
    */
   def balance(chars: Array[Char]): Boolean = {
-    ???
+    def balanceCount(count: Int, chars: List[Char]): Int =
+        if (chars.isEmpty) count
+        else {
+          val c =
+            if      (chars.head == '(') count + 1
+            else if (chars.head == ')') scala.math.abs(count - 1)
+            else    count
+
+          balanceCount(c, chars.tail)
+        }
+      balanceCount(0, chars) == 0
   }
 
   /** Returns `true` iff the parentheses in the input `chars` are balanced.
    */
   def parBalance(chars: Array[Char], threshold: Int): Boolean = {
 
-    def traverse(idx: Int, until: Int, arg1: Int, arg2: Int) /*: ???*/ = {
+    def traverse(idx: Int, until: Int, acc: Int, arg2: Int) /*: ???*/ = {
       ???
     }
 
-    def reduce(from: Int, until: Int) /*: ???*/ = {
-      ???
+    def reduce(from: Int, until: Int): Int = {
+      if (until - from <= 10) {
+        traverse(from, until)
+      } else {
+        val mid = from + (until - from) / 2
+        val (acc1, acc2) = parallel(reduce(from, mid), reduce(mid, until))
+
+        
+      }
+
     }
 
-    reduce(0, chars.length) == ???
+    reduce(0, chars.length) == 0
   }
 
   // For those who want more:
