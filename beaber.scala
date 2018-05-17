@@ -110,9 +110,9 @@ object Turing {
     Future.traverse(allTuring) { machine => Future {
       simulate(machine) match {
         case Some(tape) =>
-        val sum = tape.sum
-        if (sum >= 7) println(s"${tape.sum} -> ${machine.toSeq}") // A beaber!
-        true
+          val sum = tape.sum
+          if (sum >= 7) println(s"${tape.sum} -> ${machine.toSeq}") // A beaber!
+          true
         case None => false
       }
     }}
